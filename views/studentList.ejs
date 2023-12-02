@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    
+    <h1> <%= grade %> - <%= class_ %> </h1>
+
+    <div class="wrap">
+        <div id="class_left">
+            <form method="post" action="studentActivity" id="studentListForm">
+            <% for (let s of students) { %>
+                <input type="radio" name="studentName" value="<%= s.fullName %>" checked> <%= s.fullName %> <br>
+            <% }%>
+                <input type="hidden" name="grade" value="<%= grade %>">
+                <input type="hidden" name="class_" value="<%= class_ %>">
+                <input type="hidden" name="updated" value="false">
+                <input type="hidden" name="activityType" value="-">
+                <input type="submit" name="submit" id="submitID" value="Check Activity">
+            </form>    
+        </div>
+
+        <div id="class_right">
+            <p>Pick:</p>
+            <input type="radio" value="1" name="numberInput" checked>1
+            <input type="radio" value="2" name="numberInput">2
+            <input type="radio" value="3" name="numberInput">3
+            <input type="radio" value="4" name="numberInput">4
+            <input type="radio" value="5" name="numberInput">5
+            <br><br>
+            <button id="numberConfirm">OK</button>
+            <br><br>
+            <textarea name="numberOutput" id="numberOutputID" cols="30" rows="5" readonly></textarea>
+
+        </div>
+    </div>
+
+    <script>
+
+        const numberConfirm = document.getElementById('numberConfirm')
+        numberConfirm.addEventListener('click', () => {
+
+            let radioButtons = document.getElementsByName('studentName')
+
+            let allStudents = []
+            
+            for (let rb of radioButtons) {
+                allStudents.push(rb.value)
+            }
+
+            let neededStudents = 1
+            radioButtons = document.getElementsByName('numberInput')
+            for (let rb of radioButtons) {
+                if (rb.checked) {
+                    neededStudents = rb.value
+                    break
+                }
+            }
+
+            let picked = []
+            for (let i in allStudents) {
+                picked[i] = 0
+            }
+
+            let numPickedStudents = 0
+            let pickedStudents = []
+            while (numPickedStudents < neededStudents) {
+
+                let random = Math.floor(Math.random() * allStudents.length)
+
+                if (picked[random] == 0) {
+
+                    pickedStudents.push(allStudents[random])
+
+                    picked[random] = 1
+                    numPickedStudents++
+                }
+                
+            }
+
+            const numberOutput = document.getElementById('numberOutputID')
+
+            numberOutput.textContent = ''
+            /*
+            for (let p of pickedStudents) {
+                numberOutput.textContent += p
+                numberOutput.textContent += '\n'
+            }
+            */
+            for (let i in pickedStudents) {
+                numberOutput.textContent += pickedStudents[i]
+                if (i != pickedStudents.length - 1) {
+                    numberOutput.textContent += '\n'
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
