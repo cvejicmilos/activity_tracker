@@ -119,6 +119,7 @@ textarea {
     border-radius: 8px;
     color: #fff;
     background-color: #333;
+    resize: none;
 }
 
 select {
@@ -137,4 +138,11 @@ select {
 option {
     background-color: #333;
     color: #fff;
+}
+
+#buttonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Activity Tracker</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
@@ -20,6 +20,7 @@
                 <input type="hidden" name="class_" value="<%= class_ %>">
                 <input type="hidden" name="updated" value="false">
                 <input type="hidden" name="activityType" value="-">
+                <br>
                 <input type="submit" name="submit" id="submitID" value="Check Activity">
             </form>    
         </div>
@@ -39,62 +40,60 @@
         </div>
     </div>
 
+    <div id="buttonDiv">
+        <button style="background-color: #CE2029;" class="goBack" onclick="history.back()">Back</button>
+    </div>
+
     <script>
 
-        const numberConfirm = document.getElementById('numberConfirm')
+        const numberConfirm = document.getElementById('numberConfirm');
         numberConfirm.addEventListener('click', () => {
 
-            let radioButtons = document.getElementsByName('studentName')
+            let radioButtons = document.getElementsByName('studentName');
 
-            let allStudents = []
+            let allStudents = [];
             
             for (let rb of radioButtons) {
-                allStudents.push(rb.value)
+                allStudents.push(rb.value);
             }
 
-            let neededStudents = 1
+            let neededStudents = 1;
             radioButtons = document.getElementsByName('numberInput')
             for (let rb of radioButtons) {
                 if (rb.checked) {
-                    neededStudents = rb.value
-                    break
+                    neededStudents = rb.value;
+                    break;
                 }
             }
 
-            let picked = []
+            let picked = [];
             for (let i in allStudents) {
-                picked[i] = 0
+                picked[i] = 0;
             }
 
-            let numPickedStudents = 0
-            let pickedStudents = []
+            let numPickedStudents = 0;
+            let pickedStudents = [];
             while (numPickedStudents < neededStudents) {
 
-                let random = Math.floor(Math.random() * allStudents.length)
+                let random = Math.floor(Math.random() * allStudents.length);
 
                 if (picked[random] == 0) {
 
-                    pickedStudents.push(allStudents[random])
+                    pickedStudents.push(allStudents[random]);
 
-                    picked[random] = 1
-                    numPickedStudents++
+                    picked[random] = 1;
+                    numPickedStudents++;
                 }
                 
             }
 
             const numberOutput = document.getElementById('numberOutputID')
 
-            numberOutput.textContent = ''
-            /*
-            for (let p of pickedStudents) {
-                numberOutput.textContent += p
-                numberOutput.textContent += '\n'
-            }
-            */
+            numberOutput.textContent = '';
             for (let i in pickedStudents) {
-                numberOutput.textContent += pickedStudents[i]
+                numberOutput.textContent += pickedStudents[i];
                 if (i != pickedStudents.length - 1) {
-                    numberOutput.textContent += '\n'
+                    numberOutput.textContent += '\n';
                 }
             }
         })

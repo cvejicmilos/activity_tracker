@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Activity Tracker</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
@@ -38,12 +38,12 @@
     </div>
 
     <h1>Add activity:</h1>
-    <form method="post" id="formGoodActivity">
+    <form method="post" id="formActivity">
         <input type="radio" name="activityType" value="good" checked> Good
         <br> <br>
         <input type="radio" name="activityType" value="bad"> Bad
         <br> <br>
-        <input type="text" name="activityDiscription" autocomplete="off">
+        <input type="text" name="activityDiscription" id="activityDiscription" autocomplete="off">
         <br> <br>
         <input type="hidden" name="studentName" value="<%= studentName %>">
         <input type="hidden" name="grade" value="<%= grade %>">
@@ -51,6 +51,27 @@
         <input type="hidden" name="updated" value="true">
         <input type="submit" name="submit" id="submitID" value="Add">
     </form>
+    
+    <div id="buttonDiv">
+        <button style="background-color: #CE2029;" class="goBack" onclick="history.back()">Back</button>
+    </div>
+
+    <script>
+        const form = document.getElementById('formActivity');
+        const activityDiscription = document.getElementById('activityDiscription');
+        const submit = document.getElementById('submitID');
+
+        console.log(activityDiscription.value === '');
+
+        submit.addEventListener('click', () => {
+            const activity = activityDiscription.value.trim(' ');
+            if (activity == '') {
+                event.preventDefault();
+                window.alert('Add activity discription!')
+            }
+        });
+
+    </script>
 
 </body>
 </html>
