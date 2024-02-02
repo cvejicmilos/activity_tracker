@@ -1,6 +1,6 @@
-const path = require('path')
-const express = require('express')
-const mongoose = require('mongoose')
+const path = require('path');
+const express = require('express');
+const mongoose = require('mongoose');
 
 
 mongoose.connect('mongodb://localhost:27017/students', {
@@ -10,26 +10,24 @@ mongoose.connect('mongodb://localhost:27017/students', {
     */
 })
 
-const studentsRoutes = require('./routes/students.js')
-const exp = require('constants')
+const studentsRoutes = require('./routes/students.js');
+const exp = require('constants');
 
-const app = express()
+const app = express();
 
-app.set('view engine', 'ejs')
-app.set('views', 'views')
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', studentsRoutes)
+app.use('/', studentsRoutes);
 
 app.use(function (req, res, next) {
-    const err = new Error(
-        "You tried loading something that does not exist: " + req.url
-    )
-    err.status = 404
+    const err = new Error("You tried loading something that does not exist: " + req.url);
+    err.status = 404;
 
-    next(err)
+    next(err);
 })
 
 app.use(function (error, req, res, next) {
