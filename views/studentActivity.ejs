@@ -51,9 +51,13 @@
         <input type="hidden" name="updated" value="true">
         <input type="submit" name="submit" id="submitID" value="Add">
     </form>
-    
+
     <div id="buttonDiv">
-        <button style="background-color: #CE2029;" class="goBack" onclick="history.back()">Back</button>
+        <form id="invisibleFormID" method="post" action="class">
+            <input type="hidden" name="grade" value="<%= grade %>">
+            <input type="hidden" name="class" value="<%= class_ %>">
+            <input type="submit" name="submit" id="submitID" style="background-color: #CE2029;" value="Back">
+        </form>
     </div>
 
     <script>
