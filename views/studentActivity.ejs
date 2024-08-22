@@ -7,51 +7,37 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-
     <h1><%= studentName %></h1>
-    
     <div class="wrap">
-
         <div id="left">
             <ul id="ul_left" class="good">
-
                 <% for (let activity of goodActivity[0].goodActivity) { %>
                         <li> <%= activity %> </li>
                 <% } %>
-
             </ul>
-
         </div>
-
         <div id="right">
-            
             <ul id="ul_left" class="bad">
-
                 <% for (let activity of badActivity[0].badActivity) { %>
                         <li> <%= activity %> </li>
                 <% } %>
-
             </ul>
-
         </div>
-
     </div>
-
     <h1>Add activity:</h1>
     <form method="post" id="formActivity">
         <input type="radio" name="activityType" value="good" checked> Good
-        <br> <br>
+        <br><br>
         <input type="radio" name="activityType" value="bad"> Bad
-        <br> <br>
+        <br><br>
         <input type="text" name="activityDiscription" id="activityDiscription" autocomplete="off">
-        <br> <br>
+        <br><br>
         <input type="hidden" name="studentName" value="<%= studentName %>">
         <input type="hidden" name="grade" value="<%= grade %>">
         <input type="hidden" name="class_" value="<%= class_ %>">
         <input type="hidden" name="updated" value="true">
         <input type="submit" name="submit" id="submitID" value="Add">
     </form>
-
     <div id="buttonDiv">
         <form id="invisibleFormID" method="post" action="class">
             <input type="hidden" name="grade" value="<%= grade %>">
@@ -59,7 +45,6 @@
             <input type="submit" name="submit" id="submitID" style="background-color: #CE2029;" value="Back">
         </form>
     </div>
-
     <script>
         const form = document.getElementById('formActivity');
         const activityDiscription = document.getElementById('activityDiscription');
@@ -74,8 +59,6 @@
                 window.alert('Add activity discription!')
             }
         });
-
     </script>
-
 </body>
 </html>

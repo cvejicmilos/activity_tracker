@@ -7,9 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-    
     <h1> <%= grade %> - <%= class_ %> </h1>
-
     <div class="wrap">
         <div id="class_left">
             <form method="post" action="studentActivity" id="studentListForm">
@@ -24,7 +22,6 @@
                 <input type="submit" name="submit" id="submitID" value="Check Activity">
             </form>    
         </div>
-
         <div id="class_right">
             <p>Pick:</p>
             <input type="radio" value="1" name="numberInput" checked>1
@@ -36,23 +33,18 @@
             <button id="numberConfirm">OK</button>
             <br><br>
             <textarea name="numberOutput" id="numberOutputID" cols="30" rows="5" readonly></textarea>
-
         </div>
     </div>
-
     <div id="buttonDiv">
         <form id="invisibleFormID" method="post" action="/">
             <input type="submit" name="submit" id="submitID" style="background-color: #CE2029;" value="Back">
         </form>
     </div>
-
     <script>
-
         const numberConfirm = document.getElementById('numberConfirm');
         numberConfirm.addEventListener('click', () => {
 
             let radioButtons = document.getElementsByName('studentName');
-
             let allStudents = [];
             
             for (let rb of radioButtons) {
@@ -67,30 +59,23 @@
                     break;
                 }
             }
-
             let picked = [];
             for (let i in allStudents) {
                 picked[i] = 0;
             }
-
             let numPickedStudents = 0;
             let pickedStudents = [];
             while (numPickedStudents < neededStudents) {
-
                 let random = Math.floor(Math.random() * allStudents.length);
-
+                
                 if (picked[random] == 0) {
-
                     pickedStudents.push(allStudents[random]);
-
                     picked[random] = 1;
                     numPickedStudents++;
                 }
                 
             }
-
             const numberOutput = document.getElementById('numberOutputID')
-
             numberOutput.textContent = '';
             for (let i in pickedStudents) {
                 numberOutput.textContent += pickedStudents[i];
@@ -100,6 +85,5 @@
             }
         })
     </script>
-
 </body>
 </html>

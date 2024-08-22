@@ -37,19 +37,15 @@ async function getStudents(grade, class_) {
 }
 
 async function getGoodActivity(studentName, grade, class_) {
-
     const goodActivity = await studentModel.find({fullName: studentName, grade: grade, class_: class_}, {_id: 0, goodActivity: 1}).exec();
 
     return goodActivity;
-
 }
 
 async function getBadActivity(studentName, grade, class_) {
-
     const badActivity = await studentModel.find({fullName: studentName, grade: grade, class_: class_}, {_id: 0, badActivity: 1}).exec();
 
     return badActivity;
-
 }
 
 async function updateActivity(studentName, grade, class_, activityType, activityDescription) {

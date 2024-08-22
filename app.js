@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost:27017/students', {
     useNewUrlParser: true,
     useUnifiedTopology: true
     */
-})
+});
 
 const studentsRoutes = require('./routes/students.js');
 const exp = require('constants');
@@ -26,13 +26,11 @@ app.use('/', studentsRoutes);
 app.use(function (req, res, next) {
     const err = new Error("You tried loading something that does not exist: " + req.url);
     err.status = 404;
-
     next(err);
-})
+});
 
 app.use(function (error, req, res, next) {
     console.error(error.stack);
-
     const statusCode = error.status || 500;
     res.render('error.ejs', {
         errorMessage: error.message,
